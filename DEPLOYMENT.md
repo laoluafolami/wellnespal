@@ -28,6 +28,8 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
+**⚠️ Important**: These environment variables MUST be set before deploying, as they are required during the build process.
+
 #### 4. **Database Setup**
 Run these SQL migrations in your Supabase SQL Editor:
 
@@ -64,6 +66,11 @@ Run these SQL migrations in your Supabase SQL Editor:
 - Check Node version (should be 20)
 - Verify environment variables are set
 - Check build logs for specific errors
+
+#### Build Fails with "Supabase URL and API key required"
+- Ensure `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set in Netlify environment variables
+- Environment variables must be available during build time, not just runtime
+- Redeploy after setting environment variables
 
 #### App Loads but Features Missing
 - Verify Supabase URL and key are correct

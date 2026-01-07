@@ -12,7 +12,6 @@ export default function SignupPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const supabase = createClient();
 
   const {
     register,
@@ -25,6 +24,13 @@ export default function SignupPage() {
   const onSubmit = async (data: SignupFormData) => {
     setIsLoading(true);
     setError(null);
+
+    const supabase = createClient();
+    if (!supabase) {
+      setError("Service unavailable. Please try again later.");
+      setIsLoading(false);
+      return;
+    }
 
     const { error } = await supabase.auth.signUp({
       email: data.email,
