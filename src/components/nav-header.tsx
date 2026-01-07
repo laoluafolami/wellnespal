@@ -8,9 +8,11 @@ import { ThemeToggle } from "./theme-toggle";
 export function NavHeader() {
   const router = useRouter();
   const pathname = usePathname();
-  const supabase = createClient();
 
   const handleSignOut = async () => {
+    const supabase = createClient();
+    if (!supabase) return;
+    
     await supabase.auth.signOut();
     router.push("/");
     router.refresh();
