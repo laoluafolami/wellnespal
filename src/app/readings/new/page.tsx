@@ -8,6 +8,9 @@ import { useCreateGlucoseReading } from "@/hooks/use-glucose-readings";
 import { useUserSettings } from "@/hooks/use-settings";
 import type { ReadingFormData, GlucoseReadingFormData } from "@/lib/validations";
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export default function NewReadingPage() {
   const router = useRouter();
   const createReading = useCreateReading();

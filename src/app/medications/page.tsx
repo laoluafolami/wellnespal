@@ -8,6 +8,9 @@ import { formatTimeRange, getFrequencyLabel } from "@/lib/medication-utils";
 import type { Medication } from "@/types";
 import type { MedicationFormData } from "@/lib/validations";
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export default function MedicationsPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingMedication, setEditingMedication] = useState<Medication | null>(null);
