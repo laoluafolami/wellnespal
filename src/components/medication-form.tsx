@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { getFrequencyLabel, getDefaultTimes, getNextMedicationColor, getMedicationColors } from "@/lib/medication-utils";
+import { getDefaultTimes, getNextMedicationColor, getMedicationColors } from "@/lib/medication-utils";
 import { medicationSchema, type MedicationFormData } from "@/lib/validations";
 import type { Medication } from "@/types";
 
@@ -50,11 +50,8 @@ export function MedicationForm({
     },
   });
 
-  const { fields, replace } = useFieldArray({
-    control,
-    name: "times",
-  });
-
+  // Get current times for rendering
+  const currentTimes = watch("times") || [];
   const watchedFrequency = watch("frequency");
 
   useEffect(() => {
@@ -62,10 +59,10 @@ export function MedicationForm({
       setSelectedFrequency(watchedFrequency);
       if (watchedFrequency !== "custom" && watchedFrequency !== "as_needed") {
         const defaultTimes = getDefaultTimes(watchedFrequency as any);
-        replace(defaultTimes);
+        setValue("times", defaultTimes);
       }
     }
-  }, [watchedFrequency, selectedFrequency, replace]);
+  }, [watchedFrequency, selectedFrequency, setValue]);
 
   const handleFormSubmit = async (data: MedicationFormData) => {
     await onSubmit(data);
@@ -167,14 +164,14 @@ export function MedicationForm({
                 )}
               </div>
               <div className="grid gap-2">
-                {fields.map((field, index) => (
-                  <div key={field.id} className="flex items-center gap-2">
+                {currentTimes.map((time, index) => (
+                  <div key={index} className="flex items-center gap-2">
                     <input
                       type="time"
                       className="input-modern flex-1"
                       {...register(`times.${index}` as const)}
                     />
-                    {selectedFrequency === "custom" && fields.length > 1 && (
+                    {selectedFrequency === "custom" && currentTimes.length > 1 && (
                       <button
                         type="button"
                         onClick={() => removeTimeSlot(index)}
