@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Next.js Runtime Plugin (automatically detects Next.js)
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
@@ -34,11 +35,3 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-# Redirect rules for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"], Country = ["US"]}
-  force = false

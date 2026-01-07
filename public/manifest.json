@@ -1,6 +1,6 @@
 {
-  "name": "Health Tracker - BP & Glucose Monitor",
-  "short_name": "Health Tracker",
+  "name": "WellnesPal - Your Complete Health Companion",
+  "short_name": "WellnesPal",
   "description": "Track your blood pressure, glucose levels, and medication reminders",
   "start_url": "/",
   "display": "standalone",
@@ -14,108 +14,9 @@
   "icons": [
     {
       "src": "/icons/icon-placeholder.svg",
-      "sizes": "72x72",
+      "sizes": "72x72 96x96 128x128 144x144 152x152 192x192 384x384 512x512",
       "type": "image/svg+xml",
       "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "96x96",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "128x128",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "144x144",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "152x152",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "384x384",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "/icons/icon-placeholder.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Add BP Reading",
-      "short_name": "Add BP",
-      "description": "Quickly add a blood pressure reading",
-      "url": "/dashboard?tab=bp",
-      "icons": [
-        {
-          "src": "/icons/shortcut-bp.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Add Glucose Reading",
-      "short_name": "Add Glucose",
-      "description": "Quickly add a glucose reading",
-      "url": "/dashboard?tab=glucose",
-      "icons": [
-        {
-          "src": "/icons/shortcut-glucose.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Medications",
-      "short_name": "Meds",
-      "description": "View medication schedule",
-      "url": "/medications",
-      "icons": [
-        {
-          "src": "/icons/shortcut-meds.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/dashboard-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Dashboard view showing health metrics"
-    },
-    {
-      "src": "/screenshots/dashboard-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop dashboard with charts and readings"
     }
   ]
 }

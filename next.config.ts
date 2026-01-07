@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
+  // Optimize for Netlify deployment
+  trailingSlash: false,
+  
+  // Image optimization for Netlify
+  images: {
+    unoptimized: true, // Netlify handles image optimization
+  },
+  
   // PWA Configuration
   async headers() {
     return [
