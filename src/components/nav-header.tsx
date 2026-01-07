@@ -48,7 +48,7 @@ export function NavHeader() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 glass border-b border-white/5">
+    <header className="nav-header">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

@@ -89,7 +89,7 @@ export function HealthCharts({ bpReadings, glucoseReadings, isGlucoseEnabled }: 
           <GlucoseChart readings={glucoseReadings} />
         </div>
       ) : (
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 xl:grid-cols-2">
           <BPChart readings={bpReadings} />
           <GlucoseChart readings={glucoseReadings} />
         </div>

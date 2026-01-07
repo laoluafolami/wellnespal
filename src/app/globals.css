@@ -148,6 +148,142 @@ body {
   75% { transform: translate(3%, -2%) rotate(2deg); }
 }
 
+/* Navigation header - ensure it stays on top */
+.nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Highest priority for navigation */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(10, 10, 15, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  isolation: isolate; /* Create new stacking context */
+  will-change: transform; /* Optimize for sticky positioning */
+}
+
+.light .nav-header {
+  background: rgba(248, 250, 252, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  /* Ensure proper spacing on mobile */
+  .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Adjust stat cards for mobile */
+  .stat-card {
+    min-height: 120px;
+  }
+  
+  /* Make charts more mobile-friendly */
+  .recharts-wrapper {
+    width: 100% !important;
+    height: 300px !important;
+  }
+  
+  /* Improve form visibility on mobile */
+  .glass {
+    margin-bottom: 1rem;
+  }
+  
+  /* Ensure medication schedule is readable on mobile */
+  .medication-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  /* Better button spacing on mobile */
+  .btn-group-mobile {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Improve navigation on mobile */
+  .nav-header .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure forms are fully visible on mobile */
+  .add-reading-form {
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+  }
+  
+  /* Better mobile layout for dashboard */
+  .dashboard-mobile-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Improve text sizing on mobile */
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  
+  /* Better padding for mobile cards */
+  .glass {
+    padding: 1rem;
+  }
+  
+  /* Ensure proper touch targets */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Adjust grid layouts for tablets */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Stack charts vertically on tablets */
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Improve mobile scrolling */
+@media (max-width: 1024px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better mobile viewport handling */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  }
+  
+  /* Ensure content doesn't get cut off */
+  main {
+    padding-bottom: 2rem;
+  }
+}
+
+/* Z-index hierarchy */
+.z-navigation { z-index: 1000; } /* Navigation header */
+.z-notifications { z-index: 999; } /* Reminder notifications */
+.z-modals { z-index: 998; } /* PWA install, modals */
+.z-content { z-index: 10; } /* Main content */
+.z-background { z-index: -1; } /* Background gradients */
+
 /* Glassmorphism card */
 .glass {
   background: var(--glass-bg);

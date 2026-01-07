@@ -180,7 +180,7 @@ export function ReminderNotifications({
   if (allReminders.length === 0) return null;
 
   return (
-    <div className="fixed top-20 right-4 z-50 space-y-2 max-w-sm">
+    <div className="fixed top-20 right-4 z-[999] space-y-2 max-w-sm">
       {allReminders.map((reminder) => (
         <div
           key={reminder.id}

@@ -82,7 +82,7 @@ export function PWAInstall() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:max-w-sm">
+    <div className="fixed bottom-4 left-4 right-4 z-[998] md:left-auto md:right-4 md:max-w-sm">
       <div className="glass rounded-2xl p-4 border border-indigo-500/20 bg-gradient-to-r from-indigo-500/10 to-purple-500/10">
         <div className="flex items-start gap-3">
           <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center flex-shrink-0">

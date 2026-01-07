@@ -156,31 +156,31 @@ export function MedicationSchedule({ date = new Date() }: MedicationScheduleProp
           {schedule.map((item) => (
             <div
               key={`${item.medication_id}-${item.scheduled_time}`}
-              className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+              className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
             >
-              {/* Color indicator */}
-              <div
-                className="w-4 h-4 rounded-full flex-shrink-0"
-                style={{ backgroundColor: item.color }}
-              />
-
-              {/* Medication info */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h4 className="font-medium text-white truncate">
-                    {item.medication_name}
-                  </h4>
-                  <span className="text-sm text-zinc-400">
-                    {item.dosage}
-                  </span>
+              {/* Medication info with color indicator */}
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div
+                  className="w-4 h-4 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: item.color }}
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                    <h4 className="font-medium text-white truncate">
+                      {item.medication_name}
+                    </h4>
+                    <span className="text-sm text-zinc-400">
+                      {item.dosage}
+                    </span>
+                  </div>
+                  <p className="text-sm text-zinc-500">
+                    {formatTime(new Date(item.scheduled_time).toTimeString().slice(0, 5))}
+                  </p>
                 </div>
-                <p className="text-sm text-zinc-500">
-                  {formatTime(new Date(item.scheduled_time).toTimeString().slice(0, 5))}
-                </p>
               </div>
 
               {/* Status buttons */}
-              <div className="flex gap-2">
+              <div className="flex gap-2 self-end sm:self-center">
                 <button
                   onClick={() => handleStatusChange(item, 'taken')}
                   disabled={logMedication.isPending || updateLog.isPending}

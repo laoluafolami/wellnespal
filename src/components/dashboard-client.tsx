@@ -159,7 +159,11 @@ export function DashboardClient() {
         </div>
 
         {/* Stats Grid */}
-        <div className={`grid gap-4 mb-8 ${isGlucoseEnabled ? 'md:grid-cols-2 lg:grid-cols-5' : 'md:grid-cols-3'}`}>
+        <div className={`grid gap-4 mb-8 ${
+          isGlucoseEnabled 
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-5' 
+            : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
+        }`}>
           {/* Latest BP Reading Card */}
           <div className="glass glass-hover rounded-2xl p-6 stat-card slide-up stagger-1" style={{ opacity: 0 }}>
             <div className="flex items-start justify-between mb-4">
@@ -282,9 +286,9 @@ export function DashboardClient() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Charts - Takes 2 columns */}
-          <div className="lg:col-span-2 space-y-6 slide-up stagger-6" style={{ opacity: 0 }}>
+        <div className="space-y-6 xl:grid xl:gap-6 xl:grid-cols-3 xl:space-y-0">
+          {/* Charts - Takes 2 columns on desktop, full width on mobile */}
+          <div className="xl:col-span-2 space-y-6 slide-up stagger-6" style={{ opacity: 0 }}>
             <HealthCharts 
               bpReadings={readings} 
               glucoseReadings={glucoseReadings}
@@ -297,8 +301,8 @@ export function DashboardClient() {
             )}
           </div>
 
-          {/* Combined Add Reading Form */}
-          <div className="slide-up stagger-7" style={{ opacity: 0 }}>
+          {/* Combined Add Reading Form - Full width on mobile, sidebar on desktop */}
+          <div className="slide-up stagger-7 add-reading-form" style={{ opacity: 0 }}>
             <AddReadingTabs
               onBPSubmit={handleSubmit}
               onGlucoseSubmit={handleGlucoseSubmit}
@@ -331,7 +335,7 @@ export function DashboardClient() {
               </div>
             </div>
           ) : recentReadings.length > 0 ? (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {recentReadings.map((reading, index) => (
                 <div key={reading.id} className="fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
                   <BPReadingCard reading={reading} onDelete={handleDelete} />
@@ -359,7 +363,7 @@ export function DashboardClient() {
             </div>
 
             {recentGlucoseReadings.length > 0 ? (
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {recentGlucoseReadings.map((reading, index) => (
                   <div key={reading.id} className="fade-in" style={{ animationDelay: `${0.1 * index}s` }}>
                     <GlucoseReadingCard reading={reading} onDelete={handleGlucoseDelete} />
