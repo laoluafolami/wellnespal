@@ -3,12 +3,12 @@ import { Providers } from "@/components/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Health Tracker - BP & Glucose Monitor",
+  title: "WellnessPal - Your Complete Health Companion",
   description: "Track your blood pressure, glucose levels, and medication reminders. A comprehensive health monitoring app.",
   keywords: ["blood pressure", "glucose", "health", "medication", "tracker", "monitor", "medical"],
-  authors: [{ name: "Health Tracker Team" }],
-  creator: "Health Tracker",
-  publisher: "Health Tracker",
+  authors: [{ name: "WellnessPal Team" }],
+  creator: "WellnessPal",
+  publisher: "WellnessPal",
   formatDetection: {
     email: false,
     address: false,
@@ -18,17 +18,17 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Health Tracker",
+    title: "WellnessPal",
   },
   openGraph: {
     type: "website",
-    siteName: "Health Tracker",
-    title: "Health Tracker - BP & Glucose Monitor",
+    siteName: "WellnessPal",
+    title: "WellnessPal - Your Complete Health Companion",
     description: "Track your blood pressure, glucose levels, and medication reminders",
   },
   twitter: {
     card: "summary",
-    title: "Health Tracker - BP & Glucose Monitor",
+    title: "WellnessPal - Your Complete Health Companion",
     description: "Track your blood pressure, glucose levels, and medication reminders",
   },
 };
@@ -83,11 +83,11 @@ export default function RootLayout({
         {/* PWA iOS Meta Tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Health Tracker" />
+        <meta name="apple-mobile-web-app-title" content="WellnessPal" />
         
         {/* PWA Android Meta Tags */}
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="Health Tracker" />
+        <meta name="application-name" content="WellnessPal" />
       </head>
       <body className="min-h-screen bg-[var(--background)] antialiased" suppressHydrationWarning>
         <Providers>{children}</Providers>

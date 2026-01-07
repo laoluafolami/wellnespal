@@ -92,7 +92,7 @@ export function PWAInstall() {
           </div>
           
           <div className="flex-1 min-w-0">
-            <h4 className="font-medium text-white text-sm mb-1">Install Health Tracker</h4>
+            <h4 className="font-medium text-white text-sm mb-1">Install WellnessPal</h4>
             <p className="text-zinc-400 text-xs mb-3 leading-relaxed">
               Add to your home screen for better notifications and offline access
             </p>

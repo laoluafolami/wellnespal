@@ -244,7 +244,7 @@ export default function SettingsPage() {
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-white mb-1">Install as App</h3>
                   <p className="text-zinc-400 text-sm mb-4">
-                    Add Health Tracker to your home screen for better notifications, offline access, and a native app experience.
+                    Add WellnessPal to your home screen for better notifications, offline access, and a native app experience.
                   </p>
                   
                   <div className="space-y-3 mb-4">
@@ -296,13 +296,13 @@ export default function SettingsPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">Health Tracker</h3>
+                  <h3 className="text-lg font-semibold text-white">WellnessPal</h3>
                   <p className="text-zinc-500 text-sm">Version 1.1.0</p>
                 </div>
               </div>
 
               <p className="text-zinc-400 text-sm mb-4">
-                Health Tracker helps you monitor your blood pressure and glucose levels over time. Regular tracking can help
+                WellnessPal helps you monitor your blood pressure and glucose levels over time. Regular tracking can help
                 you and your healthcare provider make informed decisions about your health.
               </p>
 

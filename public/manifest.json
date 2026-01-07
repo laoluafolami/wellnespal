@@ -1,6 +1,6 @@
 {
-  "name": "WellnesPal - Your Complete Health Companion",
-  "short_name": "WellnesPal",
+  "name": "WellnessPal - Your Complete Health Companion",
+  "short_name": "WellnessPal",
   "description": "Track your blood pressure, glucose levels, and medication reminders",
   "start_url": "/",
   "display": "standalone",

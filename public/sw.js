@@ -1,6 +1,6 @@
-// Health Tracker Service Worker - Development Friendly
-const CACHE_NAME = 'health-tracker-v1';
-const STATIC_CACHE_NAME = 'health-tracker-static-v1';
+// WellnessPal Service Worker - Development Friendly
+const CACHE_NAME = 'wellnesspal-v1';
+const STATIC_CACHE_NAME = 'wellnesspal-static-v1';
 
 // Minimal files to cache for offline functionality
 const STATIC_FILES = [
@@ -103,7 +103,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('Health Tracker', options)
+    self.registration.showNotification('WellnessPal', options)
   );
 });
 
