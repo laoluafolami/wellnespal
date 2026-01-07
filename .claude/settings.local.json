@@ -6,7 +6,10 @@
       "Bash(start http://localhost:3000)",
       "Bash(start http://localhost:3001)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: BP Tracker MVP\n\n- Next.js 15 with App Router\n- Supabase auth and database integration\n- Ultra-modern glassmorphism UI design\n- Light/dark mode toggle\n- BP reading form with date picker\n- Readings history with trends chart\n- CSV export functionality\n- Tailwind CSS v4 styling\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }
