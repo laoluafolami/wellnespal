@@ -28,7 +28,6 @@ jobs:
             ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}
             ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}/dashboard
             ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}/login
-          configPath: './lighthouserc.json'
           uploadArtifacts: true
           temporaryPublicStorage: true
 

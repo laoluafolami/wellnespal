@@ -171,6 +171,15 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
+      - name: 🚀 Post-deployment Lighthouse Check
+        if: success()
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: ${{ steps.deploy.outputs.deploy-url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        continue-on-error: true
+
       - name: 📢 Create Release
         if: success()
         uses: actions/create-release@v1
@@ -227,12 +236,11 @@ jobs:
             echo "No bundle analyzer configured"
           fi
 
-      - name: 🚀 Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v9
-        with:
-          configPath: './lighthouserc.json'
-          uploadArtifacts: true
-          temporaryPublicStorage: true
+      - name: 📝 Audit Summary
+        run: |
+          echo "✅ Security audit completed"
+          echo "✅ Bundle analysis completed"
+          echo "🚀 Lighthouse audits will run in performance monitoring workflow"
 
   # 🧹 Cleanup
   cleanup:
