@@ -30,7 +30,7 @@ A comprehensive Progressive Web App for tracking blood pressure, glucose levels,
 
 ## 🚀 Live Demo
 
-**[Try WellnesPal Live](https://your-site-name.netlify.app)**
+**[Try WellnesPal Live](https://wellnesspal.netlify.app)**
 
 ## 🛠️ Tech Stack
 
