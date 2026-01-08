@@ -129,9 +129,18 @@ jobs:
           ls -la netlify.toml || echo "No netlify.toml"
 
       - name: 🚀 Deploy to Netlify Staging
-        run: |
-          npm install -g netlify-cli
-          netlify deploy --dir=. --message="🚀 Staging Deploy from GitHub Actions" --alias=wellnesspal-staging
+        id: deploy
+        uses: nwtgck/actions-netlify@v2.1
+        with:
+          publish-dir: '.'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "🚀 Staging Deploy from GitHub Actions"
+          alias: wellnesspal-staging
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          enable-commit-status: true
+          overwrites-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
@@ -189,9 +198,17 @@ jobs:
           ls -la netlify.toml || echo "No netlify.toml"
 
       - name: 🌟 Deploy to Netlify Production
-        run: |
-          npm install -g netlify-cli
-          netlify deploy --prod --dir=. --message="🌟 Production Deploy v${{ github.sha }}"
+        id: deploy
+        uses: nwtgck/actions-netlify@v2.1
+        with:
+          publish-dir: '.'
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "🌟 Production Deploy v${{ github.sha }}"
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          enable-commit-status: true
+          overwrites-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -207,6 +224,7 @@ jobs:
           body: |
             🚀 **WellnessPal Production Release**
             
+            **Deployed to:** ${{ steps.deploy.outputs.deploy-url }}
             **Commit:** ${{ github.sha }}
             **Branch:** ${{ github.ref }}
             
@@ -216,7 +234,7 @@ jobs:
             - Bug fixes and enhancements
             
             ### 🔗 Links
-            - 🌐 [Live Application](https://wellnesspal.netlify.app)
+            - 🌐 [Live Application](${{ steps.deploy.outputs.deploy-url }})
             - 📊 [GitHub Repository](https://github.com/${{ github.repository }})
           draft: false
           prerelease: false
