@@ -13,8 +13,6 @@ import { useGlucoseReadings, useCreateGlucoseReading, useDeleteGlucoseReading } 
 import { useUserSettings } from "@/hooks/use-settings";
 import { classifyBP } from "@/lib/bp-utils";
 import { classifyGlucose } from "@/lib/glucose-utils";
-import { createClient } from "@/lib/supabase/client";
-import { useState, useEffect } from "react";
 import type { ReadingFormData, GlucoseReadingFormData } from "@/lib/validations";
 
 export function DashboardClient() {
