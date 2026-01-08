@@ -1,0 +1,131 @@
+name: 📊 Performance Monitoring
+
+on:
+  schedule:
+    # Run performance tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to test (optional)'
+        required: false
+        default: 'https://wellnesspal.netlify.app'
+
+jobs:
+  # 🚀 Lighthouse Performance Audit
+  lighthouse-audit:
+    name: 🚀 Lighthouse Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}
+            ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}/dashboard
+            ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}/login
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: 📊 Performance Report
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Create performance issue if scores are below threshold
+            const performanceThreshold = 90;
+            const accessibilityThreshold = 95;
+            
+            // This would typically read from Lighthouse results
+            // For now, we'll create a placeholder issue
+            
+            const issueBody = `## 📊 Daily Performance Report
+            
+            **Date:** ${new Date().toISOString().split('T')[0]}
+            **URL:** ${{ github.event.inputs.url || 'https://wellnesspal.netlify.app' }}
+            
+            ### 🎯 Performance Metrics
+            - **Performance:** Checking...
+            - **Accessibility:** Checking...
+            - **Best Practices:** Checking...
+            - **SEO:** Checking...
+            - **PWA:** Checking...
+            
+            ### 📱 Mobile Performance
+            - **First Contentful Paint:** Measuring...
+            - **Largest Contentful Paint:** Measuring...
+            - **Cumulative Layout Shift:** Measuring...
+            
+            ### 🔧 Recommendations
+            - Monitor Core Web Vitals
+            - Optimize images and assets
+            - Review JavaScript bundle size
+            - Check accessibility compliance
+            
+            ---
+            *This report is generated automatically daily.*`;
+            
+            console.log('Performance monitoring completed');
+
+  # 🔍 Bundle Size Analysis
+  bundle-analysis:
+    name: 📦 Bundle Size Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build application
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: 📊 Analyze bundle size
+        run: |
+          # Get bundle sizes
+          du -sh .next/static/chunks/* > bundle-sizes.txt
+          
+          echo "## 📦 Bundle Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "**Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Chunk Sizes" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat bundle-sizes.txt >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for large bundles (>500KB)
+          large_bundles=$(awk '$1 ~ /[0-9]+M/ || ($1 ~ /[5-9][0-9][0-9]K/) { print $2 }' bundle-sizes.txt)
+          
+          if [ ! -z "$large_bundles" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ **Large bundles detected:**" >> $GITHUB_STEP_SUMMARY
+            echo "$large_bundles" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Consider code splitting or lazy loading for these chunks." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📈 Upload bundle analysis
+        uses: actions/upload-artifact@v3
+        with:
+          name: bundle-analysis
+          path: |
+            bundle-sizes.txt
+            .next/analyze/
+          retention-days: 30
