@@ -28,6 +28,7 @@ export function ReminderNotifications({
   onBPReadingClick,
   onGlucoseReadingClick,
 }: ReminderNotificationsProps) {
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [dismissedReminders, setDismissedReminders] = useState<Set<string>>(new Set());
   const { data: todaySchedule = [] } = useMedicationSchedule();
   const { data: settings } = useUserSettings();
