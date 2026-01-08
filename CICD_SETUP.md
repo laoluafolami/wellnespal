@@ -18,8 +18,7 @@ Go to your GitHub repository → Settings → Secrets and variables → Actions,
 ```bash
 # Netlify Configuration
 NETLIFY_AUTH_TOKEN=your_netlify_personal_access_token
-NETLIFY_SITE_ID=your_production_site_id
-NETLIFY_STAGING_SITE_ID=your_staging_site_id  # Optional
+NETLIFY_STAGING_SITE_ID=your_staging_site_id  # For develop branch
 
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
@@ -80,7 +79,7 @@ graph TD
     B --> C[🏗️ Build Application]
     C --> D{Branch?}
     D -->|develop| E[🚀 Deploy Staging]
-    D -->|main| F[🌟 Deploy Production]
+    D -->|main| F[📝 Audit Only]
     C --> G[🔍 Security Audit]
     E --> H[🧹 Cleanup]
     F --> H
@@ -97,21 +96,17 @@ graph TD
 2. **🏗️ Build Application**
    - Install dependencies
    - Build Next.js application
-   - Upload build artifacts
+   - Verify build success
 
-3. **🚀 Deploy Staging** (develop branch)
+3. **🚀 Deploy Staging** (develop branch only)
    - Deploy to Netlify staging
    - Comment deployment URL on PRs
 
-4. **🌟 Deploy Production** (main branch)
-   - Deploy to Netlify production
-   - Create GitHub release
-   - Tag version
-
-5. **🔍 Security & Performance Audit**
+4. **🔍 Security & Performance Audit**
    - Security vulnerability scan
    - Bundle size analysis
-   - Lighthouse performance audit
+
+**Note:** Production deployment is done manually via Netlify dashboard for better control.
 
 ### **PR Preview Pipeline** (`.github/workflows/pr-preview.yml`)
 
@@ -143,9 +138,8 @@ main (production)     ←── merge ←── develop (staging)     ←── 
 ```
 
 ### **Environment URLs:**
-- **Production:** `https://wellnesspal.netlify.app`
 - **Staging:** `https://wellnesspal-staging.netlify.app`
-- **PR Previews:** `https://pr-{number}-wellnesspal.netlify.app`
+- **Production:** Manual deployment via Netlify dashboard
 
 ## 📊 Quality Gates
 
