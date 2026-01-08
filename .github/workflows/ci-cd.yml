@@ -117,15 +117,21 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
+      - name: 📋 Debug build output
+        run: |
+          echo "Checking build output directories:"
+          ls -la
+          echo "Contents of .next directory:"
+          ls -la .next/ || echo "No .next directory"
+          echo "Package.json exists:"
+          ls -la package.json || echo "No package.json"
+          echo "Netlify.toml exists:"
+          ls -la netlify.toml || echo "No netlify.toml"
+
       - name: 🚀 Deploy to Netlify Staging
-        id: deploy
-        uses: nwtgck/actions-netlify@v2.1
-        with:
-          publish-dir: '.next'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "🚀 Staging Deploy from GitHub Actions"
-          alias: wellnesspal-staging
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --dir=. --message="🚀 Staging Deploy from GitHub Actions" --alias=wellnesspal-staging
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
@@ -171,26 +177,24 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
+      - name: 📋 Debug build output
+        run: |
+          echo "Checking build output directories:"
+          ls -la
+          echo "Contents of .next directory:"
+          ls -la .next/ || echo "No .next directory"
+          echo "Package.json exists:"
+          ls -la package.json || echo "No package.json"
+          echo "Netlify.toml exists:"
+          ls -la netlify.toml || echo "No netlify.toml"
+
       - name: 🌟 Deploy to Netlify Production
-        id: deploy
-        uses: nwtgck/actions-netlify@v2.1
-        with:
-          publish-dir: '.next'
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "🌟 Production Deploy v${{ github.sha }}"
+        run: |
+          npm install -g netlify-cli
+          netlify deploy --prod --dir=. --message="🌟 Production Deploy v${{ github.sha }}"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: 🚀 Post-deployment Lighthouse Check
-        if: success()
-        uses: treosh/lighthouse-ci-action@v9
-        with:
-          urls: ${{ steps.deploy.outputs.deploy-url }}
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-        continue-on-error: true
 
       - name: 📢 Create Release
         if: success()
@@ -203,7 +207,6 @@ jobs:
           body: |
             🚀 **WellnessPal Production Release**
             
-            **Deployed to:** ${{ steps.deploy.outputs.deploy-url }}
             **Commit:** ${{ github.sha }}
             **Branch:** ${{ github.ref }}
             
@@ -213,7 +216,7 @@ jobs:
             - Bug fixes and enhancements
             
             ### 🔗 Links
-            - 🌐 [Live Application](${{ steps.deploy.outputs.deploy-url }})
+            - 🌐 [Live Application](https://wellnesspal.netlify.app)
             - 📊 [GitHub Repository](https://github.com/${{ github.repository }})
           draft: false
           prerelease: false
