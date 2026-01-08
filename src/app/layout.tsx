@@ -56,29 +56,29 @@ export default function RootLayout({
         {/* PWA Meta Tags */}
         <link rel="manifest" href="/manifest.json" />
         
-        {/* Apple Touch Icons */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="120x120" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="76x76" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="60x60" href="/icons/icon-placeholder.svg" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/icons/icon-placeholder.svg" />
-        
         {/* Favicon */}
-        <link rel="icon" type="image/svg+xml" href="/icons/icon-placeholder.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-placeholder.svg" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-placeholder.svg" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        
+        {/* Apple Touch Icons */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon.svg" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.svg" />
         
         {/* Microsoft Tiles */}
         <meta name="msapplication-TileColor" content="#6366f1" />
-        <meta name="msapplication-TileImage" content="/icons/icon-placeholder.svg" />
+        <meta name="msapplication-TileImage" content="/icon-512.svg" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
         
         {/* Safari Pinned Tab */}
-        <link rel="mask-icon" href="/icons/icon-placeholder.svg" color="#6366f1" />
+        <link rel="mask-icon" href="/favicon.svg" color="#6366f1" />
         
         {/* PWA iOS Meta Tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />

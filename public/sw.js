@@ -93,8 +93,8 @@ self.addEventListener('push', (event) => {
   
   const options = {
     body: event.data ? event.data.text() : 'Health reminder notification',
-    icon: '/icons/icon-placeholder.svg',
-    badge: '/icons/icon-placeholder.svg',
+    icon: '/favicon.svg',
+    badge: '/favicon.svg',
     vibrate: [200, 100, 200],
     data: {
       dateOfArrival: Date.now(),

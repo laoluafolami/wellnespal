@@ -1,0 +1,18 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple 32x32 favicon -->
+  <rect width="32" height="32" rx="6" fill="url(#favicon32)"/>
+  
+  <!-- Heart icon -->
+  <path d="M16 24c-.3 0-.6-.1-.8-.4C13.8 21.8 9 17.2 9 13c0-2.2 1.8-4 4-4 1.2 0 2.3.5 3 1.4C16.7 9.5 17.8 9 19 9c2.2 0 4 1.8 4 4 0 4.2-4.8 8.8-6.2 10.6-.2.3-.5.4-.8.4z" fill="white"/>
+  
+  <!-- Small cross -->
+  <rect x="14.5" y="11" width="3" height="10" rx="1.5" fill="#34d399"/>
+  <rect x="11" y="14.5" width="10" height="3" rx="1.5" fill="#34d399"/>
+  
+  <defs>
+    <linearGradient id="favicon32" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+</svg>
