@@ -43,7 +43,7 @@ export function ReminderNotifications({
   }, []);
 
   // Get upcoming and overdue items
-  const now = new Date();
+  const now = currentTime;
   const upcomingWindow = addMinutes(now, 15); // 15 minutes ahead
 
   const overdueItems = todaySchedule.filter(item => {

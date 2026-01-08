@@ -39,7 +39,7 @@ const eslintConfig = [
     rules: {
       // Customize rules as needed
       "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "off", // Allow any types for Supabase and chart libraries
       "react-hooks/exhaustive-deps": "warn",
       "prefer-const": "error",
       "no-var": "error",
