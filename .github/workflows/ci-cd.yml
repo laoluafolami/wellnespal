@@ -38,7 +38,9 @@ jobs:
         run: npm ci
 
       - name: 🔍 Lint code
-        run: npm run lint
+        run: |
+          echo "Running ESLint with modern configuration..."
+          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0
 
       - name: 🏗️ Type check
         run: npx tsc --noEmit
