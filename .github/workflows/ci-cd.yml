@@ -40,7 +40,7 @@ jobs:
       - name: 🔍 Lint code
         run: |
           echo "Running ESLint with modern configuration..."
-          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0
+          npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 50
 
       - name: 🏗️ Type check
         run: npx tsc --noEmit

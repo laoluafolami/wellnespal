@@ -192,7 +192,7 @@ export function ReminderSettings() {
                   <div>
                     <p className="text-blue-300 dark:text-blue-200 text-xs font-medium mb-1">Phone Alarm Limitations</p>
                     <p className="text-blue-600 dark:text-blue-200/70 text-xs leading-relaxed">
-                      Web apps can't set true system alarms. For critical reminders, consider setting manual phone alarms or adding the app to your home screen for better notifications.
+                      Web apps can&apos;t set true system alarms. For critical reminders, consider setting manual phone alarms or adding the app to your home screen for better notifications.
                     </p>
                   </div>
                 </div>

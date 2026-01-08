@@ -28,7 +28,7 @@ export function useUserSettings() {
       if (!user) throw new Error("Not authenticated");
 
       // Try to get existing settings
-      let { data: settings, error } = await supabase
+      const { data: settings, error } = await supabase
         .from("user_settings")
         .select("*")
         .eq("user_id", user.id)

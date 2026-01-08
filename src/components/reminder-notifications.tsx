@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { format, isAfter, isBefore, addMinutes } from "date-fns";
+import { isAfter, isBefore, addMinutes } from "date-fns";
 import { useMedicationSchedule } from "@/hooks/use-medications";
 import { useUserSettings } from "@/hooks/use-settings";
 import { getNotificationManager } from "@/lib/notification-utils";
@@ -28,7 +28,6 @@ export function ReminderNotifications({
   onBPReadingClick,
   onGlucoseReadingClick,
 }: ReminderNotificationsProps) {
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [dismissedReminders, setDismissedReminders] = useState<Set<string>>(new Set());
   const { data: todaySchedule = [] } = useMedicationSchedule();
   const { data: settings } = useUserSettings();

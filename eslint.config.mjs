@@ -10,6 +10,30 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Global ignores
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "dist/**",
+      ".env*",
+      "*.log",
+      "coverage/**",
+      ".nyc_output/**",
+      ".cache/**",
+      ".parcel-cache/**",
+      "public/**",
+      "supabase/.branches/**",
+      "supabase/.temp/**",
+      ".claude/**",
+      ".vscode/**",
+      ".idea/**",
+      "*.swp",
+      "*.swo",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
@@ -19,6 +43,7 @@ const eslintConfig = [
       "react-hooks/exhaustive-deps": "warn",
       "prefer-const": "error",
       "no-var": "error",
+      "react/no-unescaped-entities": "error",
     },
   },
 ];

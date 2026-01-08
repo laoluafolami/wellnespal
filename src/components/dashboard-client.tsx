@@ -77,30 +77,6 @@ export function DashboardClient() {
   const isGlucoseEnabled = settings?.glucose_monitoring_enabled;
   const isMedicationEnabled = settings?.medication_reminders_enabled;
 
-  // Get current user ID for debugging
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
-  
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const supabase = createClient();
-        if (!supabase) return;
-        
-        const { data: { user }, error } = await supabase.auth.getUser();
-        if (error) {
-          console.error('Error getting user:', error);
-          return;
-        }
-        if (user) {
-          setCurrentUserId(user.id);
-        }
-      } catch (error) {
-        console.error('Failed to get user:', error);
-      }
-    };
-    getUser();
-  }, []);
-
   // Show loading state while settings are being fetched
   if (settingsLoading) {
     return (

@@ -224,7 +224,7 @@ export default function HomePage() {
                 {/* Medication Status */}
                 <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                   <div className="flex items-center justify-between mb-4">
-                    <p className="text-zinc-500 text-sm">Today's Meds</p>
+                    <p className="text-zinc-500 text-sm">Today&apos;s Meds</p>
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                   </div>
                   <div className="flex items-baseline gap-2">

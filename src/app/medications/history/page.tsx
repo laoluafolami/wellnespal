@@ -4,7 +4,7 @@ import { useState } from "react";
 import { format, startOfWeek, endOfWeek, startOfMonth, endOfMonth, subDays } from "date-fns";
 import { NavHeader } from "@/components/nav-header";
 import { useMedicationAdherence } from "@/hooks/use-medications";
-import { getAdherenceColor, getAdherenceLabel, formatTime } from "@/lib/medication-utils";
+import { getAdherenceColor, getAdherenceLabel } from "@/lib/medication-utils";
 
 // Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';

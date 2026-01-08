@@ -34,7 +34,6 @@ export function MedicationForm({
     handleSubmit,
     watch,
     setValue,
-    control,
     formState: { errors },
   } = useForm<MedicationFormData>({
     resolver: zodResolver(medicationSchema),

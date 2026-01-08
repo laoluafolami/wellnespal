@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { classifyGlucose, getMeasurementTypeLabel } from "@/lib/glucose-utils";
+import { classifyGlucose } from "@/lib/glucose-utils";
 import { glucoseReadingSchema, type GlucoseReadingFormData } from "@/lib/validations";
 
 interface GlucoseFormProps {

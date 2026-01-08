@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { format } from "date-fns";
 import { formatTime } from "@/lib/medication-utils";
 import { useMedicationSchedule, useLogMedication, useUpdateMedicationLog, useMedications, useCreateMedication } from "@/hooks/use-medications";
 import { MedicationForm } from "./medication-form";
@@ -139,7 +138,7 @@ export function MedicationSchedule({ date = new Date() }: MedicationScheduleProp
       <div className="relative">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-white">
-            Today's Medications
+            Today&apos;s Medications
           </h3>
           <button
             onClick={() => setShowAddForm(true)}
