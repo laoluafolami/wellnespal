@@ -1,0 +1,94 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with modern gradient -->
+  <rect width="512" height="512" rx="64" fill="url(#mainGradient)"/>
+  
+  <!-- Subtle pattern overlay -->
+  <rect width="512" height="512" rx="64" fill="url(#patternGradient)" opacity="0.1"/>
+  
+  <!-- Main health icon container -->
+  <g transform="translate(256, 256)">
+    <!-- Large heart shape -->
+    <path d="M0 80c-12 0-24-4.8-33.6-14.4C-67.2 32 -144-43.2-144-120c0-79.2 64.8-144 144-144 43.2 0 81.6 19.2 108 49.2C134.4-244.8 172.8-264 216-264c79.2 0 144 64.8 144 144 0 76.8-76.8 136-110.4 169.6C230.4 68.8 218.4 80 204 80H0z" 
+          fill="white" 
+          fill-opacity="0.95" 
+          transform="scale(0.6)"
+          filter="url(#heartShadow)"/>
+    
+    <!-- Animated pulse line -->
+    <g transform="translate(0, 20)">
+      <path d="M-120 0L-80 0L-60 -40L-40 40L-20 -25L0 0L20 -15L40 25L60 -30L80 0L120 0" 
+            stroke="url(#pulseGradient)" 
+            stroke-width="8" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            fill="none"
+            opacity="0.9"/>
+    </g>
+    
+    <!-- Medical cross with glow -->
+    <g filter="url(#crossGlow)">
+      <rect x="-8" y="-50" width="16" height="100" rx="8" fill="url(#crossGradient)"/>
+      <rect x="-50" y="-8" width="100" height="16" rx="8" fill="url(#crossGradient)"/>
+    </g>
+    
+    <!-- Small health indicators -->
+    <circle cx="-80" cy="-80" r="6" fill="#22d3ee" opacity="0.8"/>
+    <circle cx="80" cy="-80" r="4" fill="#34d399" opacity="0.7"/>
+    <circle cx="80" cy="80" r="5" fill="#f59e0b" opacity="0.6"/>
+    <circle cx="-80" cy="80" r="3" fill="#ef4444" opacity="0.5"/>
+  </g>
+  
+  <!-- Floating health particles -->
+  <g opacity="0.4">
+    <circle cx="100" cy="120" r="8" fill="white"/>
+    <circle cx="400" cy="100" r="6" fill="white"/>
+    <circle cx="420" cy="380" r="10" fill="white"/>
+    <circle cx="80" cy="420" r="7" fill="white"/>
+    <circle cx="450" cy="250" r="5" fill="white"/>
+    <circle cx="60" cy="280" r="4" fill="white"/>
+  </g>
+  
+  <!-- Definitions -->
+  <defs>
+    <!-- Main background gradient -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="30%" style="stop-color:#8b5cf6"/>
+      <stop offset="70%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+    
+    <!-- Pattern overlay -->
+    <radialGradient id="patternGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+    </radialGradient>
+    
+    <!-- Pulse line gradient -->
+    <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee"/>
+      <stop offset="50%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    
+    <!-- Medical cross gradient -->
+    <linearGradient id="crossGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399"/>
+      <stop offset="50%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    
+    <!-- Shadow filters -->
+    <filter id="heartShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" flood-opacity="0.3"/>
+    </filter>
+    
+    <filter id="crossGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

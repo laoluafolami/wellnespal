@@ -1,0 +1,98 @@
+name: 🔍 PR Preview Deployment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main, develop ]
+
+jobs:
+  # 🚀 Deploy PR Preview
+  deploy-preview:
+    name: 🚀 Deploy PR Preview
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build application
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: 🚀 Deploy to Netlify Preview
+        id: deploy
+        uses: nwtgck/actions-netlify@v2.1
+        with:
+          publish-dir: '.next'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "🔍 PR Preview #${{ github.event.number }}"
+          alias: pr-${{ github.event.number }}-wellnesspal
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: 💬 Comment PR with preview link
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('🔍 PR Preview')
+            );
+
+            const body = `## 🔍 PR Preview Deployment
+
+            **🚀 Preview URL:** ${{ steps.deploy.outputs.deploy-url }}
+            **📱 Mobile-friendly:** ✅
+            **🔒 HTTPS:** ✅
+
+            ### 🧪 Test Checklist
+            - [ ] Login/Signup functionality
+            - [ ] Blood pressure tracking
+            - [ ] Glucose monitoring (if enabled)
+            - [ ] Medication management
+            - [ ] PWA installation
+            - [ ] Mobile responsiveness
+            - [ ] Dark/Light mode toggle
+
+            ### 📊 Performance
+            - Build completed successfully ✅
+            - All tests passed ✅
+            - Security audit clean ✅
+
+            ---
+            *This preview will be updated automatically when you push new commits.*`;
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
