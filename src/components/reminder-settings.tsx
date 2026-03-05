@@ -105,25 +105,7 @@ export function ReminderSettings() {
               )}
             </div>
 
-            <div className="flex items-center justify-between py-3">
-              <div className="flex-1">
-                <h5 className="text-white font-medium">Email Reminders</h5>
-                <p className="text-zinc-400 text-sm">Daily summary and missed reminder emails</p>
-              </div>
-              <button
-                onClick={() => handleToggle('email_reminders_enabled', !settings.email_reminders_enabled)}
-                disabled={updateSettings.isPending}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.email_reminders_enabled ? 'bg-indigo-600' : 'bg-zinc-600'
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    settings.email_reminders_enabled ? 'translate-x-6' : 'translate-x-1'
-                  }`}
-                />
-              </button>
-            </div>
+
 
             {/* Phone Alarm Features */}
             <div className="p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20">
