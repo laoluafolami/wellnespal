@@ -4,12 +4,15 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
-  // Optimize for Netlify deployment
+  // Static export for Azure Static Web Apps, Netlify, and Hostinger
+  output: 'export',
+  
+  // Optimize for static hosting
   trailingSlash: false,
   
-  // Image optimization for Netlify
+  // Image optimization for static hosting
   images: {
-    unoptimized: true, // Netlify handles image optimization
+    unoptimized: true, // Required for static export
   },
   
   // PWA Configuration
