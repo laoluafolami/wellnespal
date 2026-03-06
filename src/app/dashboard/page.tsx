@@ -1,3 +1,4 @@
+// Dashboard page - static export compatible
 import { ClientOnly } from "@/components/client-only";
 import { DashboardClient } from "@/components/dashboard-client";
 
