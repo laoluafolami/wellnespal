@@ -8,8 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createClient } from "@/lib/supabase/client";
 import { z } from "zod";
 
-// Force dynamic rendering to prevent static generation issues
-export const dynamic = 'force-dynamic';
 
 const resetPasswordSchema = z
   .object({

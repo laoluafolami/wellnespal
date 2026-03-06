@@ -8,8 +8,6 @@ import { useReadings, useDeleteReading } from "@/hooks/use-readings";
 import { useGlucoseReadings, useDeleteGlucoseReading } from "@/hooks/use-glucose-readings";
 import { useUserSettings } from "@/hooks/use-settings";
 
-// Force dynamic rendering to prevent static generation issues
-export const dynamic = 'force-dynamic';
 
 export default function ReadingsPage() {
   const { data: readings = [], isLoading: isBPLoading } = useReadings();

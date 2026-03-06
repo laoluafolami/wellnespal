@@ -6,8 +6,6 @@ import { NavHeader } from "@/components/nav-header";
 import { useMedicationAdherence } from "@/hooks/use-medications";
 import { getAdherenceColor, getAdherenceLabel } from "@/lib/medication-utils";
 
-// Force dynamic rendering to prevent static generation issues
-export const dynamic = 'force-dynamic';
 
 export default function MedicationHistoryPage() {
   const [timeRange, setTimeRange] = useState<"week" | "month" | "3months">("week");
