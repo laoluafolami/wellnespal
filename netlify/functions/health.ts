@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
 
-const handler: Handler = async (event, context) => {
+const handler: Handler = async (event) => {
   // Handle CORS preflight
   if (event.httpMethod === 'OPTIONS') {
     return {

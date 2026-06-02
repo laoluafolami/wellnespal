@@ -205,7 +205,7 @@ export default function PricingPage() {
 
               {/* Features */}
               <div className="space-y-3">
-                <p className="text-sm font-semibold text-white">What's included:</p>
+                <p className="text-sm font-semibold text-white">What&apos;s included:</p>
                 {plan.features.map((feature, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <svg

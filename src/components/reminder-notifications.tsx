@@ -129,7 +129,7 @@ export function ReminderNotifications({
         );
       }
     });
-  }, [overdueItems.length, settings?.browser_notifications_enabled, settings?.sound_alerts_enabled, settings?.vibration_enabled]);
+  }, [overdueItems, overdueItems.length, settings?.browser_notifications_enabled, settings?.sound_alerts_enabled, settings?.vibration_enabled]);
 
   const allReminders: Reminder[] = [
     ...overdueItems.map(item => ({

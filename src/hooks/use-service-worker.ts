@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export function useServiceWorker() {
   const [isSupported, setIsSupported] = useState(false);
@@ -9,18 +9,7 @@ export function useServiceWorker() {
   const [updateAvailable, setUpdateAvailable] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    // Ensure we're on the client side
-    setIsClient(true);
-    
-    // Check if service workers are supported
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      setIsSupported(true);
-      registerServiceWorker();
-    }
-  }, []);
-
-  const registerServiceWorker = async () => {
+  const registerServiceWorker = useCallback(async () => {
     if (!isClient) return;
     
     try {
@@ -53,7 +42,18 @@ export function useServiceWorker() {
     } catch (error) {
       console.error('Service Worker registration failed:', error);
     }
-  };
+  }, [isClient]);
+
+  useEffect(() => {
+    // Ensure we're on the client side
+    setIsClient(true);
+    
+    // Check if service workers are supported
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      setIsSupported(true);
+      registerServiceWorker();
+    }
+  }, [registerServiceWorker]);
 
   const updateServiceWorker = () => {
     if (registration && registration.waiting) {
