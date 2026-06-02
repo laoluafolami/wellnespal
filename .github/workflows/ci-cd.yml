@@ -40,6 +40,7 @@ jobs:
       - name: 🔍 Lint code
         run: |
           echo "Running ESLint with modern configuration..."
+          echo "Cache bust: $(date +%s)"
           npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 10
 
       - name: 🏗️ Type check
