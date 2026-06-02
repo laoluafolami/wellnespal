@@ -1,0 +1,54 @@
+name: Keep Database Active
+
+on:
+  schedule:
+    # Run every 4 hours to prevent database sleep
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  ping-database:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping Health Endpoint (Azure)
+        run: |
+          echo "Pinging Azure deployment..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://ashy-moss-04f0b450f.4.azurestaticapps.net/api/health || echo "000")
+          echo "Azure Response Code: $RESPONSE"
+          if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "503" ]; then
+            echo "✓ Azure endpoint responded (Database pinged)"
+          else
+            echo "⚠ Azure endpoint did not respond as expected"
+          fi
+      
+      - name: Ping Health Endpoint (Netlify)
+        continue-on-error: true
+        run: |
+          echo "Pinging Netlify deployment..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://wellnespal.netlify.app/api/health || echo "000")
+          echo "Netlify Response Code: $RESPONSE"
+          if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "503" ]; then
+            echo "✓ Netlify endpoint responded (Database pinged)"
+          else
+            echo "⚠ Netlify endpoint did not respond as expected"
+          fi
+      
+      - name: Ping Health Endpoint (Hostinger)
+        continue-on-error: true
+        run: |
+          echo "Pinging Hostinger deployment..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://wellness.benbolpharmacy.com/api/health || echo "000")
+          echo "Hostinger Response Code: $RESPONSE"
+          if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "503" ]; then
+            echo "✓ Hostinger endpoint responded (Database pinged)"
+          else
+            echo "⚠ Hostinger endpoint did not respond as expected"
+          fi
+      
+      - name: Summary
+        run: |
+          echo "=========================================="
+          echo "Database Keep-Alive Check Complete"
+          echo "Timestamp: $(date -u)"
+          echo "=========================================="

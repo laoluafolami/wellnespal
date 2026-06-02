@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellnessPal Health Check</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .status {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .timestamp {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status">🏥</div>
+        <div class="message">WellnessPal Health Check</div>
+        <div class="spinner"></div>
+        <div id="result"></div>
+        <div class="timestamp" id="timestamp"></div>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://cxcmvplvttvmtxxgsauq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN4Y212cGx2dHR2bXR4eGdzYXVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY5Mzg5ODYsImV4cCI6MjA4MjUxNDk4Nn0.Ec0wXPzzuD5zvT4qrc51wu79vhHpKI3Pk5VnsyaTJ7c';
+
+        async function checkDatabase() {
+            const resultDiv = document.getElementById('result');
+            const timestampDiv = document.getElementById('timestamp');
+            
+            try {
+                const response = await fetch(`${supabaseUrl}/rest/v1/user_settings?select=user_id&limit=1`, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': supabaseKey,
+                        'Authorization': `Bearer ${supabaseKey}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const timestamp = new Date().toISOString();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = '<div class="success">✓ Database Active & Healthy</div>';
+                    timestampDiv.textContent = `Last checked: ${timestamp}`;
+                } else {
+                    resultDiv.innerHTML = '<div class="error">✗ Database Connection Issue</div>';
+                    timestampDiv.textContent = `Error at: ${timestamp}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">✗ Health Check Failed</div>';
+                timestampDiv.textContent = `Failed at: ${new Date().toISOString()}`;
+            }
+        }
+
+        // Run check on page load
+        checkDatabase();
+    </script>
+</body>
+</html>
